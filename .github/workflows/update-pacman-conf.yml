@@ -1,0 +1,47 @@
+name: Update pacman configurations
+
+on:
+  schedule:
+    - cron: '29 3 * * 3'
+  repository_dispatch:
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux
+
+    steps:
+      - name: Get time
+        id: time
+        run: echo "::set-output name=time::$(date +%F-%T)"
+
+      - name: Set up cache
+        uses: actions/cache@master
+        with:
+          path: /var/cache/pacman/pkg
+          key: pacman-cache-${{ steps.time.outputs.time }}
+          restore-keys: pacman-cache-
+
+      - name: Update package database
+        run: |
+          pacman -Sy
+
+      - name: Install runtime dependencies
+        run: |
+          pacman -S --noconfirm git
+
+      - uses: actions/checkout@master
+
+      - name: Update pacman configurations
+        run: |
+          ./update-pacman-conf.sh
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: calilbot
+          author_email: calil@jingbei.li
+          message: "Updated pacman configurations"
+        env:
+          GITHUB_TOKEN: ${{ secrets.CALIL_GITHUB_TOKEN }}
