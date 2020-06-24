@@ -2,3 +2,7 @@ armv6h/
 armv7h/
 aarch64/
 gnupg/
+pkg/
+src/
+devtools-alarm-extra/
+*.pkg.tar*
