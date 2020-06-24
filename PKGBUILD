@@ -3,11 +3,11 @@ pkgver=3.e2c0d17
 pkgrel=1
 pkgdesc='Extra tools for Arch Linux ARM package maintainers'
 arch=('any')
-url='http://github.com/petronny/devtools-alarm-extra'
+url='http://github.com/arch4edu/devtools-alarm-extra'
 license=('GPL')
 depends=('archlinuxarm-keyring' 'devtools-alarm')
 makedepends=('git')
-source=('git+https://github.com/petronny/devtools-alarm-extra.git')
+source=("git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
