@@ -24,6 +24,8 @@ do
 	cp $arch/root/etc/makepkg.conf makepkg-$arch.conf
 	cp $arch/root/etc/pacman.conf pacman-extra-$arch.conf
 
+	sed -i '/^#CacheDir/{s/^#//;s/$/'${arch}'/}' pacman-extra-$arch.conf
+
 	if [ "$arch" = "aarch64" ]
 	then
 		pacman -Sdd --config $arch/pacman.conf --dbpath $arch/db --gpgdir $gpgdir --root $arch/root --cachedir $cachedir --needed --noconfirm pacman-mirrorlist
