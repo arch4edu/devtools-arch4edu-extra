@@ -4,5 +4,6 @@ aarch64/
 gnupg/
 pkg/
 src/
-devtools-alarm-extra/
+devtools-arch4edu-extra/
 *.pkg.tar*
+a.sh
