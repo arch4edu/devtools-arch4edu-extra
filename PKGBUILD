@@ -1,8 +1,8 @@
 pkgname=devtools-alarm-extra
-pkgver=8.dad2217
+pkgver=3.e2c0d17
 pkgrel=1
 pkgdesc='Extra tools for Arch Linux ARM package maintainers'
-arch=('x86_64')
+arch=('any')
 url='http://github.com/petronny/devtools-alarm-extra'
 license=('GPL')
 depends=('archlinuxarm-keyring' 'devtools-alarm')
