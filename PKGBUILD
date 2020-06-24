@@ -1,5 +1,5 @@
 pkgname=devtools-alarm-extra
-pkgver=3.e2c0d17
+pkgver=8.bc28f5b
 pkgrel=1
 pkgdesc='Extra tools for Arch Linux ARM package maintainers'
 arch=('any')
@@ -12,7 +12,7 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/$pkgname"
-  echo "$(git rev-list --count master).$(git rev-parse --short master)"
+  echo "$(git rev-list --count makepkg).$(git rev-parse --short makepkg)"
 }
 
 package() {
