@@ -1,5 +1,5 @@
 pkgname=devtools-arch4edu-extra
-pkgver=8.bc28f5b
+pkgver=10.ee349df
 pkgrel=1
 pkgdesc='Extra tools for arch4edu package maintainers'
 arch=('any')
@@ -13,10 +13,11 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$srcdir/$pkgname"
-  echo "$(git rev-list --count makepkg).$(git rev-parse --short makepkg)"
+  echo "$(git rev-list --count master).$(git rev-parse --short master)"
 }
 
 package() {
+  cd "$srcdir/$pkgname"
   mkdir -p $pkgdir/usr/bin
   mkdir -p $pkgdir/usr/share/devtools
 
@@ -27,7 +28,7 @@ package() {
     ln -sf /usr/bin/archbuild $pkgdir/usr/bin/extra-$i-build
   done
 
-  ln -s $pkgdir/usr/bin/arch4edu-x86_64-build
+  ln -sf /usr/bin/archbuild $pkgdir/usr/bin/arch4edu-x86_64-build
   cat /usr/share/devtools/pacman-extra.conf arch4edu.conf > $pkgdir/usr/share/devtools/pacman-arch4edu.conf
   cat /usr/share/devtools/pacman-extra.conf arch4edu.conf > $pkgdir/usr/share/devtools/pacman-multilib-arch4edu.conf
 }
