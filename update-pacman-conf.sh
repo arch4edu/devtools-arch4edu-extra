@@ -24,7 +24,8 @@ do
 	cp $arch/root/etc/makepkg.conf makepkg-$arch.conf
 	cp $arch/root/etc/pacman.conf pacman-extra-$arch.conf
 
-	sed -i '/^#CacheDir/{s/^#//;s/$/'${arch}'/}' pacman-extra-$arch.conf
+	sed '/^#CacheDir/{s/^#//;s/$/'${arch}'/}' -i pacman-extra-$arch.conf
+	sed '/^PKGEXT/s/\.pkg\.tar\.xz/.pkg.tar.zst/' -i makepkg-$arch.conf
 
 	if [ "$arch" = "aarch64" ]
 	then
