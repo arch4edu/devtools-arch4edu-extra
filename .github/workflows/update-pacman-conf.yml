@@ -2,7 +2,7 @@ name: Update pacman configurations
 
 on:
   schedule:
-    - cron: '29 3 * * 3'
+    - cron: '29 3 * * *'
   repository_dispatch:
 
 jobs:
