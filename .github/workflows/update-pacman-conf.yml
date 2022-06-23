@@ -3,10 +3,10 @@ name: Update pacman configurations
 on:
   schedule:
     - cron: '29 3 * * *'
-  repository_dispatch:
+  workflow_dispatch:
 
 jobs:
-  prepare:
+  update:
     runs-on: ubuntu-latest
     container:
       image: archlinux
@@ -32,16 +32,18 @@ jobs:
           pacman -S --noconfirm git
 
       - uses: actions/checkout@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config --global --add safe.directory $(realpath .)
+          git config user.name 'cactus-arch4edu'
+          git config user.email 'cactus@jingbei.li'
 
       - name: Update pacman configurations
         run: |
           ./update-pacman-conf.sh
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v4
-        with:
-          author_name: calilbot
-          author_email: calil@jingbei.li
-          message: "Updated pacman configurations"
-        env:
-          GITHUB_TOKEN: ${{ secrets.CALIL_GITHUB_TOKEN }}
+          git add .
+          git commit -m "Updated pacman configurations" || exit 0
+          git push

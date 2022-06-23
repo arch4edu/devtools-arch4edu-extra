@@ -3,7 +3,7 @@ set -ex
 
 cp keyrings/archlinuxarm* /usr/share/pacman/keyrings || :
 
-for arch in armv6h armv7h aarch64
+for arch in armv7h aarch64
 do
 	gpgdir=$arch/gnupg
 	cachedir=/var/cache/pacman/pkg/$arch
