@@ -35,11 +35,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configure git
-        run: |
-          git config --global --add safe.directory $(realpath .)
-          git config user.name 'cactus-arch4edu'
-          git config user.email 'cactus@jingbei.li'
+      - uses: petronny/git-config-user@master
 
       - name: Update pacman configurations
         run: |
