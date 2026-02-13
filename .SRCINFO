@@ -1,0 +1,14 @@
+pkgbase = devtools-arch4edu-extra
+	pkgdesc = Extra tools for arch4edu package maintainers
+	pkgver = 12.3c44e3c
+	pkgrel = 10
+	url = http://github.com/arch4edu/devtools-arch4edu-extra
+	arch = x86_64
+	arch = aarch64
+	license = GPL
+	makedepends = git
+	depends = devtools
+	source = git+http://github.com/arch4edu/devtools-arch4edu-extra.git
+	sha256sums = SKIP
+
+pkgname = devtools-arch4edu-extra
