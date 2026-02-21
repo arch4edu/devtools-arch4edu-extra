@@ -14,6 +14,9 @@ echo "Architecture = $arch" >> $arch/pacman.conf
 echo "[core]" >> $arch/pacman.conf
 echo "Include = $(realpath mirrorlist)" >> $arch/pacman.conf
 
+# Enable all mirrors (uncomment any line starting with #Server or # Server)
+sed -i 's/^#[[:space:]]*Server[[:space:]]*=/Server =/' mirrorlist
+
 pacman-key --config $arch/pacman.conf --gpgdir $gpgdir --init
 pacman-key --config $arch/pacman.conf --gpgdir $gpgdir --populate archlinuxarm
 
@@ -23,7 +26,6 @@ pacman -Sdd --config $arch/pacman.conf --dbpath $arch/db --gpgdir $gpgdir --root
 cp $arch/root/etc/makepkg.conf makepkg-$arch.conf
 cp $arch/root/etc/pacman.conf pacman-extra-$arch.conf
 
-sed '/^#CacheDir/{s/^#//;s/$/'${arch}'/}' -i pacman-extra-$arch.conf
 sed '/^PKGEXT/s/\.pkg\.tar\.xz/.pkg.tar.zst/' -i makepkg-$arch.conf
 
 pacman -Sdd --config $arch/pacman.conf --dbpath $arch/db --gpgdir $gpgdir --root $arch/root --cachedir $cachedir --needed --noconfirm pacman-mirrorlist
