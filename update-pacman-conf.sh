@@ -12,6 +12,7 @@ mkdir -p $arch/{db,root} $cachedir
 echo [options] > $arch/pacman.conf
 echo "Architecture = $arch" >> $arch/pacman.conf
 echo "[core]" >> $arch/pacman.conf
+echo "SigLevel = Required DatabaseOptional" >> $arch/pacman.conf
 echo "Include = $(realpath mirrorlist)" >> $arch/pacman.conf
 
 # Enable all mirrors (uncomment any line starting with #Server or # Server)
